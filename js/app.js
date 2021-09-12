@@ -8,9 +8,11 @@ loadProducts();
 
 // show all product in UI 
 const showProducts = (products) => {
+  console.log(products[0].image);     //console
   const allProducts = products.map((pd) => pd);
+  console.log(allProducts);       //console
   for (const product of allProducts) {
-    const image = product.images;
+    const image = product.image;
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -32,21 +34,24 @@ const addToCart = (id, price) => {
   updatePrice("price", price);
 
   updateTaxAndCharge();
+
   document.getElementById("total-Products").innerText = count;
+  updateTotal()
 };
 
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
-  const converted = parseInt(element);
+  console.log(element)
+  const converted = parseFloat(element);  //chanes
   return converted;
 };
 
 // main price update function
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
-  const convertPrice = parseFloat(value);
+  const convertPrice = parseFloat(value)      //chanes
   const total = convertedOldPrice + convertPrice;
-  document.getElementById(id).innerText = Math.round(total);
+  document.getElementById(id).innerText = parseFloat(total).toFixed(2);
 };
 
 // set innerText function
@@ -76,5 +81,7 @@ const updateTotal = () => {
   const grandTotal =
     getInputValue("price") + getInputValue("delivery-charge") +
     getInputValue("total-tax");
-  document.getElementById("total").innerText = grandTotal;
+  document.getElementById("total").innerText = parseFloat(grandTotal).toFixed(2);
 };
+
+
