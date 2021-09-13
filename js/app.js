@@ -25,8 +25,8 @@ const showProducts = (products) => {
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
       <button id="details-btn" class="btn btn-danger">Details</button>
       <div class='d-flex justify-content-center'>
-        <button class='btn btn-warning m-4'>${product.rating.rate}</button>
-        <button  class='btn btn-info m-4'>${product.rating.count}</button>
+        <button class='btn btn-warning m-3'><span class="me-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>${product.rating.rate}</button>
+        <button  class='btn btn-info m-3'><span class="me-2"><i class="fas fa-user"></i></span>${product.rating.count}</button>
       </div>
       </div>
       `;
@@ -41,21 +41,22 @@ const addToCart = (id, price) => {
   updateTaxAndCharge();
 
   document.getElementById("total-Products").innerText = count;
-  updateTotal()
+  updateTotal()     // calling the updatetotall function to show total result
 };
 
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
   console.log(element)
-  const converted = parseFloat(element);  //chanes
+  const converted = parseFloat(element);  //convert to parse float
   return converted;
 };
 
 // main price update function
 const updatePrice = (id, value) => {
   const convertedOldPrice = getInputValue(id);
-  const convertPrice = parseFloat(value)      //chanes
+  const convertPrice = parseFloat(value)      //convert to parse float
   const total = convertedOldPrice + convertPrice;
+  // showing  two decimal point
   document.getElementById(id).innerText = parseFloat(total).toFixed(2);
 };
 
